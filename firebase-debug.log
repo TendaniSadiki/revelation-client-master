@@ -1,0 +1,30 @@
+[debug] [2023-10-17T21:15:34.417Z] ----------------------------------------------------------------------
+[debug] [2023-10-17T21:15:34.422Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Edmond\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2023-10-17T21:15:34.423Z] CLI Version:   12.7.0
+[debug] [2023-10-17T21:15:34.423Z] Platform:      win32
+[debug] [2023-10-17T21:15:34.424Z] Node Version:  v18.17.0
+[debug] [2023-10-17T21:15:34.425Z] Time:          Tue Oct 17 2023 23:15:34 GMT+0200 (South Africa Standard Time)
+[debug] [2023-10-17T21:15:34.426Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-17T21:15:35.195Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-17T21:15:35.197Z] > authorizing via signed-in user (tendanisadiki16@gmail.com)
+[debug] [2023-10-17T21:15:35.198Z] [iam] checking project revelationapp-390bd for permissions ["firebase.projects.get"]
+[debug] [2023-10-17T21:15:35.204Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/revelationapp-390bd:testIamPermissions [none]
+[debug] [2023-10-17T21:15:35.204Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/revelationapp-390bd:testIamPermissions x-goog-quota-user=projects/revelationapp-390bd
+[debug] [2023-10-17T21:15:35.205Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revelationapp-390bd:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-10-17T21:15:37.289Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/revelationapp-390bd:testIamPermissions 200
+[debug] [2023-10-17T21:15:37.290Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/revelationapp-390bd:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-10-17T21:15:37.292Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd [none]
+[debug] [2023-10-17T21:15:38.170Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd 200
+[debug] [2023-10-17T21:15:38.171Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd {"projectId":"revelationapp-390bd","projectNumber":"465444417647","displayName":"RevelationApp","name":"projects/revelationapp-390bd","resources":{"hostingSite":"revelationapp-390bd","realtimeDatabaseInstance":"revelationapp-390bd-default-rtdb","storageBucket":"revelationapp-390bd.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_c44d659c-d696-4df5-97d1-2287be1624e3"}
+[debug] [2023-10-17T21:15:38.179Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/revelationapp-390bd/sites 
+[debug] [2023-10-17T21:15:40.405Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/revelationapp-390bd/sites 200
+[debug] [2023-10-17T21:15:40.406Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/revelationapp-390bd/sites {"sites":[{"name":"projects/revelationapp-390bd/sites/revelationapp-390bd","defaultUrl":"https://revelationapp-390bd.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-10-17T21:15:40.406Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd/webApps/-/config [none]
+[debug] [2023-10-17T21:15:41.459Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd/webApps/-/config 200
+[debug] [2023-10-17T21:15:41.460Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd/webApps/-/config {"projectId":"revelationapp-390bd","databaseURL":"https://revelationapp-390bd-default-rtdb.firebaseio.com","storageBucket":"revelationapp-390bd.appspot.com","locationId":"us-central","apiKey":"AIzaSyDG8_Lz9ggCm-gA1UM6TftJoSnTX7m-NWw","authDomain":"revelationapp-390bd.firebaseapp.com","messagingSenderId":"465444417647"}
+[debug] [2023-10-17T21:15:41.487Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd [none]
+[debug] [2023-10-17T21:15:42.131Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd 200
+[debug] [2023-10-17T21:15:42.131Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/revelationapp-390bd {"projectId":"revelationapp-390bd","projectNumber":"465444417647","displayName":"RevelationApp","name":"projects/revelationapp-390bd","resources":{"hostingSite":"revelationapp-390bd","realtimeDatabaseInstance":"revelationapp-390bd-default-rtdb","storageBucket":"revelationapp-390bd.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_c44d659c-d696-4df5-97d1-2287be1624e3"}
+[info] i  hosting[revelationapp-390bd]: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting[revelationapp-390bd]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
