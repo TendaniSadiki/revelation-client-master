@@ -1,0 +1,30 @@
+.activebtn{
+    background:#7A6EC6;
+    color:#FFFFFF;
+    cursor:pointer;
+   }
+<<<<<<< HEAD
+   .activebtn2{
+    background:#2207cf;
+    color:#FFFFFF;
+    cursor:pointer;
+   }
+=======
+.Home{
+    width: 100%;
+}
+  .sidebar{
+    float: left;
+    width: 30%;
+    height: 100vh;
+  }
+  .centerCms{
+   width: 40%;
+  }
+.rightbar{
+    float: right;
+    width: 30%;
+    height: 100vh;
+    
+}
+>>>>>>> 022a5cdb11cdcd84c848c022bec95327c42c145e

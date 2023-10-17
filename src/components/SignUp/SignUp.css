@@ -1,0 +1,60 @@
+.getStaarted{
+    
+}
+.signup-container{
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.89);
+    color: white;
+
+}
+.signup-container h2{
+    text-align: center;
+}
+.getStartedBtn{
+
+}
+.rightSignUp{
+    float: right;
+    width: 40%;
+    height:90vh;
+    border-radius: 15px;
+
+
+
+}
+.leftSignUp{
+    float: left;
+    width: 60%;
+    height:90vh;
+
+}
+ .Titles{
+    height: 50px;
+    overflow: hidden;
+}
+ .titleWrapper{
+    height: 100%;
+    animation: move 10s ease-in-out infinite alternate;
+
+}
+@keyframes move {
+    25%{
+        transform: translateY(-50px);
+    }
+    50%{
+        transform: translateY(-100px);
+    }
+    100%{
+        transform: translateY(-150px);
+    }
+}
+.titleItem{
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #9db91f;
+    align-items: center;
+    display: flex;
+    
+}
