@@ -29,11 +29,11 @@ jobs:
       - name: Build your web application
         run: npm run build
 
-      - name: Deploy to Firebase Hosting (Project Two)
+      - name: Deploy to Firebase Hosting (Client)
         run: |
-          # Set up the Firebase project for Project Two
-          firebase use --add <project-two-name> --token "$FIREBASE_TOKEN_PROJECT_TWO"
-          # Deploy to Firebase Hosting for Project Two
+          # Set up the Firebase project for Client
+          firebase use --add <revelation-client> --token "$FIREBASE_TOKEN_PROJECT_TWO"
+          # Deploy to Firebase Hosting for Client
           firebase deploy --only hosting
 
         env:
