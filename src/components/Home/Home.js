@@ -1,3 +1,4 @@
+// Import the necessary modules and components
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -103,6 +104,7 @@ const Home = () => {
         <Modal
           data={{ title: 'Product Details', product: selectedProduct, selectedColor: selectedColor }}
           closeModal={closeModal}
+          products={products} 
         />
       )}
     </div>

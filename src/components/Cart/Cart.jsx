@@ -5,24 +5,22 @@ import './Cart.css';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  console.log(cartItems)
   const [selectedColorImage, setSelectedColorImage] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [userEmail, setUserEmail] = useState(''); // State to hold the user's email
+  const [userEmail, setUserEmail] = useState('');
   const user = auth.currentUser;
 
   useEffect(() => {
     if (user) {
-      // Get the user's email and set it in the state
       setUserEmail(user.email);
 
       const fetchCartItems = async () => {
         try {
           const userCollectionRef = collection(db, 'users');
           const userDocRef = doc(userCollectionRef, user.uid);
-
           const cartCollectionRef = collection(userDocRef, 'cart');
           const q = query(cartCollectionRef);
-
           const querySnapshot = await getDocs(q);
 
           const items = [];
@@ -75,25 +73,19 @@ function Cart() {
 
   const handleCheckout = async () => {
     try {
-      // Create a batch to update multiple documents in a single batch
       const batch = db.batch();
 
-      // For each item in the cart, calculate and update the quantity
       cartItems.forEach((cartItem) => {
         const itemDocRef = doc(collection(db, 'products'), cartItem.id);
-        const newQuantity = cartItem.product.quantity - 1; // Subtract one from the quantity
+        const newQuantity = cartItem.product.quantity - 1;
 
-        // Update the product's quantity in Firestore
         batch.update(itemDocRef, { quantity: newQuantity });
       });
 
-      // Commit the batch to update all product quantities at once
       await batch.commit();
 
-      // After updating quantities, you can proceed with the checkout logic here
       alert('Checkout successful!');
 
-      // Clear the cart
       setCartItems([]);
       setTotalPrice(0);
       setSelectedColorImage(null);
