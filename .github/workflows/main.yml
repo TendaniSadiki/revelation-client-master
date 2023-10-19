@@ -44,7 +44,7 @@ jobs:
           elif [ "${{ github.ref }}" = "refs/heads/staging" ]; then
             CHANNEL="staging"
           else
-            # If the branch is not master, developer, or staging, exit without deploying
+            # If the branch is not main, developer, or staging, exit without deploying
             echo "Branch not set up for deployment."
             exit 0
           fi
