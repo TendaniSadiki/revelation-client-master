@@ -1,44 +1,26 @@
-import { Timestamp, addDoc, collection, doc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { auth, db } from '../../config/firebase';
-
-const modalStyle = {
-  border: '1px solid #ccc',
-  padding: '20px',
-  maxWidth: '400px',
-  margin: '0 auto',
-  backgroundColor: '#fff',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-};
-
-const colorImagesStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  margin: '10px 0',
-};
-
-const closeButtonStyle = {
-  float: 'right',
-  cursor: 'pointer',
-  fontSize: '18px',
-  fontWeight: 'bold',
-};
+import { Timestamp, addDoc, collection, doc } from 'firebase/firestore';
+import './Modal.css';
 
 function Modal({ data, onAddToCart, onClose }) {
+  // State for selected color, size, and displayed image
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [displayedImage, setDisplayedImage] = useState(null);
 
+  // Handle color selection
   const handleColorChange = (color, image) => {
     setSelectedColor(color);
     setDisplayedImage(image);
   };
 
+  // Handle size selection
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };
 
+  // Handle adding the item to the cart
   const handleAddToCart = async () => {
     if (selectedColor && selectedSize) {
       try {
@@ -49,15 +31,15 @@ function Modal({ data, onAddToCart, onClose }) {
           console.error('User is not logged in.');
           return;
         }
-  
+
         // Reference the user's document
         const userCollectionRef = collection(db, 'users');
         const userUid = user.uid;
         const userDocRef = doc(userCollectionRef, userUid);
-  
+
         // Create a reference to the user's cart subcollection
         const cartCollectionRef = collection(userDocRef, 'cart');
-  
+
         // Create a new cart item
         const newItem = {
           product: data.product,
@@ -65,10 +47,10 @@ function Modal({ data, onAddToCart, onClose }) {
           selectedSize,
           timestamp: Timestamp.now(),
         };
-  
+
         // Add the cart item to the user's cart subcollection
         await addDoc(cartCollectionRef, newItem);
-  
+
         // Reset selections after adding to cart
         setSelectedColor('');
         setSelectedSize('');
@@ -76,22 +58,23 @@ function Modal({ data, onAddToCart, onClose }) {
         onClose(); // Close the modal
       } catch (error) {
         console.error('Error adding item to cart:', error);
+        // Display an error message to the user here if necessary
       }
     } else {
       // Handle the case where either color or size is not selected
       console.error('Both color and size must be selected.');
+      // Display a message to the user indicating the missing selection
     }
   };
-  
-  
 
   return (
-    <div style={modalStyle}>
+    <div className="modal-container">
+      <div >
       <span
         onClick={onClose}
-        style={{ ...closeButtonStyle, marginRight: '5px' }}
+        
       >
-        &times;
+        &times; close
       </span>
       {data && (
         <div>
@@ -107,7 +90,7 @@ function Modal({ data, onAddToCart, onClose }) {
 
               {/* Display colorImages */}
               {data.product.colorImages && (
-                <div style={colorImagesStyle}>
+                <div >
                   {Object.entries(data.product.colorImages).map(([color, image]) => (
                     <div key={color}>
                       <button
@@ -157,6 +140,7 @@ function Modal({ data, onAddToCart, onClose }) {
           {/* Display other data properties here */}
         </div>
       )}
+    </div>
     </div>
   );
 }

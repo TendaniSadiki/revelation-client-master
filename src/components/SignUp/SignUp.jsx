@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { NavLink } from "react-router-dom";
 import { auth, db } from "../../config/firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
-import "./SignUp.css";
+import "./SignUp.css"; // Import your custom CSS for styling
 import { TextInput } from "../Constance/Constance"; // Import your custom TextInput component
 
 const SignUp = () => {
@@ -57,9 +56,9 @@ const SignUp = () => {
     <div className="signup-container">
       {step === 1 && (
         <>
-          <h2>Step 1: Provide Email, Password, Username, and Phone Number</h2>
+          <h2 className="signup-title">Step 1: Provide Email, Password, Username, and Phone Number</h2>
           {error && <div className="error-message">{error}</div>}
-          <form>
+          <form className="signup-form">
             <TextInput
               label="Email"
               value={email}
@@ -82,13 +81,10 @@ const SignUp = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            <button type="button" onClick={handleSignUp}>
+            <button type="button" onClick={handleSignUp} className="signup-button">
               Next
             </button>
           </form>
-          <p>
-            Already have an account? <NavLink to="/signin">Sign In</NavLink>
-          </p>
         </>
       )}
 

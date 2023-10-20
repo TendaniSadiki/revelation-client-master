@@ -1,60 +1,44 @@
-.getStaarted{
-    
-}
-.signup-container{
-    height: 100vh;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.89);
-    color: white;
-
-}
-.signup-container h2{
+/* Styling for the SignUp component */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     text-align: center;
-}
-.getStartedBtn{
-
-}
-.rightSignUp{
-    float: right;
-    width: 40%;
-    height:90vh;
-    border-radius: 15px;
-
-
-
-}
-.leftSignUp{
-    float: left;
-    width: 60%;
-    height:90vh;
-
-}
- .Titles{
-    height: 50px;
-    overflow: hidden;
-}
- .titleWrapper{
-    height: 100%;
-    animation: move 10s ease-in-out infinite alternate;
-
-}
-@keyframes move {
-    25%{
-        transform: translateY(-50px);
-    }
-    50%{
-        transform: translateY(-100px);
-    }
-    100%{
-        transform: translateY(-150px);
-    }
-}
-.titleItem{
-    height: 50px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #9db91f;
-    align-items: center;
+  }
+  
+  .signup-form {
     display: flex;
-    
-}
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .signup-button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Add more styles as needed */
+  

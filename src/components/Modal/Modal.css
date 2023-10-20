@@ -1,24 +1,73 @@
+/* Modal container */
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: white;
+  z-index: 1000;
+  max-width: 90%; /* Increase the width to 90% for better responsiveness */
+  width: 100%; /* Make the modal fill the available width */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden; /* Hide content that overflows the modal */
+}
 
-.modal {
-    border: 1px solid #ccc;
-    padding: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .close-button {
-    float: right;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .color-images {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0;
-  }
-  
+/* Close button */
+.modal-container span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Product details */
+.modal-container h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.modal-container p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+/* Color buttons */
+.modal-container button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+/* Selected image */
+.modal-container img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio and avoid distortion */
+  display: block; /* Center the image horizontally */
+  margin: 0 auto;
+  max-height: 300px; /* Set a maximum height for the image to control size */
+}
+
+/* Size radio buttons */
+.modal-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Add to Cart button */
+.modal-container button[type="button"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Add styling for errors here if needed */

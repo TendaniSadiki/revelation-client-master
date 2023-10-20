@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { NavLink } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import { TextInput } from '../Constance/Constance'; // Import your custom TextInput component
 
@@ -20,7 +19,7 @@ const SignIn = () => {
 
   return (
     <div className="signin-container">
-      <h2>Sign In</h2>
+      
       {error && <div className="error-message">{error}</div>}
       <form>
         <TextInput
@@ -38,9 +37,7 @@ const SignIn = () => {
           Sign In
         </button>
       </form>
-      <p>
-        Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
-      </p>
+    
     </div>
   );
 };

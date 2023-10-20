@@ -1,9 +1,10 @@
-// Import the necessary modules and components
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { FaTshirt } from 'react-icons/fa';
 import Modal from "../Modal/Modal";
+import "./Home.css";
+import Loader from "../Loader/Loader";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
     const fetchProductsForAllUsers = async () => {
@@ -31,8 +33,10 @@ const Home = () => {
         }
 
         setProducts(allProductsData);
+        setLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         console.error("Error fetching products:", error);
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
@@ -67,44 +71,48 @@ const Home = () => {
         <button onClick={() => setSelectedCategory("Accessories")}>Accessories</button>
       </div>
 
-      <ul>
-        {filteredProducts.map((product) => (
-          <li key={product.id}>
-            <div>
-              {product.colorImages ? (
-                <img
-                  src={
-                    product.colorImages.Blue ||
-                    product.colorImages.Red ||
-                    product.colorImages.Green ||
-                    product.colorImages.Brown ||
-                    product.colorImages.Black ||
-                    product.colorImages.White ||
-                    product.colorImages.Yellow ||
-                    product.colorImages.Orange ||
-                    product.colorImages.Purple
-                  }
-                  alt="product"
-                  className="InventoryImage"
-                />
-              ) : (
-                <FaTshirt size={50} />
-              )}
-              <p>Product Name: {product.productName}</p>
-              <p>Price: {product.price}</p>
-              <p>Colors: {product.availableColors.join(", ")}</p>
-              <p>User UID: {product.userUid}</p>
-              <button onClick={() => { openModal(product); }}>View Details</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {loading ? ( // Display Loader while loading
+        <Loader />
+      ) : (
+        <ul>
+          {filteredProducts.map((product) => (
+            <li key={product.id} className="product-item">
+              <div>
+                {product.colorImages ? (
+                  <img
+                    src={
+                      product.colorImages.Blue ||
+                      product.colorImages.Red ||
+                      product.colorImages.Green ||
+                      product.colorImages.Brown ||
+                      product.colorImages.Black ||
+                      product.colorImages.White ||
+                      product.colorImages.Yellow ||
+                      product.colorImages.Orange ||
+                      product.colorImages.Purple
+                    }
+                    alt="product"
+                    className="inventory-image"
+                  />
+                ) : (
+                  <FaTshirt size={50} />
+                )}
+                <p className="product-name">Product Name: {product.productName}</p>
+                <p className="product-price">Price: {product.price}</p>
+                <p className="product-colors">Colors: {product.availableColors.join(", ")}</p>
+                <p className="product-user-uid">User UID: {product.userUid}</p>
+                <button onClick={() => { openModal(product); }}>View Details</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {isModalOpen && (
         <Modal
           data={{ title: 'Product Details', product: selectedProduct, selectedColor: selectedColor }}
           closeModal={closeModal}
-          products={products} 
+          products={products}
         />
       )}
     </div>
