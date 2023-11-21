@@ -103,7 +103,7 @@ const HomeOffline = () => {
                     <FaTshirt size={50} />
                   )}
                   <p className="product-name">Product Name: {product.productName}</p>
-                  <p className="product-price">Price: {product.price}</p>
+                  <p className="product-price">Price: R{product.price}</p>
                   <p className="product-colors">Colors: {product.availableColors.join(", ")}</p>
                   <p className="product-user-uid">User UID: {product.userUid}</p>
                 </div>

@@ -45,7 +45,7 @@ const SignUp = () => {
         const userDocRef = doc(userCollectionRef, userUid);
         await setDoc(userDocRef, userData);
 
-        setStep(5); // Skip steps 2 and 3
+        setStep(2); 
       }
     } catch (error) {
       setError(error.message);
@@ -87,8 +87,18 @@ const SignUp = () => {
           </form>
         </>
       )}
+      {step === 2 && (
+        <>
+          {error && <div className="error-message">{error}</div>}
+          <form className="signup-form">
+           <div>
+              <h1>Please verify your email address</h1>
+           </div>
+          </form>
+        </>
+      )}
 
-      {/* ... other step rendering blocks ... */}
+      
     </div>
   );
 };
