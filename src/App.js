@@ -7,7 +7,7 @@ import "./App.css";
 import Cart from "./components/Cart/Cart";
 import HomeOffline from "./components/Home/HomeOffiline";
 import Loader from "./components/Loader/Loader";
-
+ 
 function App() {
   const [user, setUser] = useState(null);
   const [isUser, setisUser] = useState(false);
@@ -54,7 +54,6 @@ function App() {
       console.error("Error logging out:", error);
     }
   };
-
   const isEmailVerified = user && user.emailVerified;
 
   return (
