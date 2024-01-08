@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 import { TextInput } from '../Constance/Constance'; // Import your custom TextInput component
+import './SignIn.css';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [isEmailVerified, setIsEmailVerified] = useState(true); // Initially assuming email is verified
+  const [isEmailVerified, setIsEmailVerified] = useState(true);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
 
   useEffect(() => {
-    // Check if the user's email is verified when the component mounts
     if (auth.currentUser) {
       setIsEmailVerified(auth.currentUser.emailVerified);
     }
@@ -20,7 +21,6 @@ const SignIn = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       if (!isEmailVerified) {
-        // User's email is not verified, send them a verification email
         await sendEmailVerification(auth.currentUser);
         setError('Please verify your email. We have sent a verification link to your email address.');
         return;
@@ -29,6 +29,24 @@ const SignIn = () => {
     } catch (error) {
       setError(error.message);
     }
+  };
+
+  const handleForgotPassword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setError('Password reset email sent. Please check your email for further instructions.');
+      closeForgotPasswordModal();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const openForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(true);
+  };
+
+  const closeForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(false);
   };
 
   return (
@@ -41,21 +59,48 @@ const SignIn = () => {
       )}
       <form>
         <TextInput
-          label="Email"
+          
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          autoComplete = "true"
+          autoComplete="true"
+          placeholder="Enter your email" // Placeholder for email input
         />
         <TextInput
           type="password"
-          label="Password"
+          
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter your password" // Placeholder for password input
         />
         <button type="button" onClick={handleSignIn}>
           Sign In
         </button>
+        <button type="button" onClick={openForgotPasswordModal}>
+          Forgot Password?
+        </button>
       </form>
+
+      {isForgotPasswordModalOpen && (
+        <div className="forgot-password-modal">
+          <div>
+            <h2>Forgot Password</h2>
+            <p>Enter your email address to reset your password.</p>
+            <TextInput
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="true"
+              placeholder="Enter your email" // Placeholder for email input
+            />
+            <button type="button" onClick={handleForgotPassword}>
+              Reset Password
+            </button>
+            <button type="button" onClick={closeForgotPasswordModal}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
